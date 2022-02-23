@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <div>
+        <div class="left-panel">
+            <h1>! Geriausiu vietu paieska !</h1>
+            <div>
+                <form method="post" action="/">
+                    <input placeholder="vietu skaicius" name="count" type="number" />
+                    <button class="button" name="action" value="suggest">ieskoti</button>
+                </form>
+            </div>
+        </div>
+        <div class="sena"></div>
+        <div class="sale flex center column">
+            <form method="post" action="/">
+                <input type="hidden" name="action" value="sale">
+                {% for eile in eiles %}
+                <div class="flex j-center">
+                    {% set row = loop.index0 %}
+                    {% for kedes in eile %}
+
+                        {% set col = loop.index0 %}
+                        {% if kedes=="p" %} 
+                            <p class="kede {{kedes}}" value=""></p>
+                        {% elif kedes[0]=="v" %}
+                            <button type="submit" class="VIPkede {{kedes}}" name="kede" value="{{ row }}.{{ col }}">V.I.P</button>
+                        {% else %}
+                            <button type="submit" class="kede {{kedes}}" name="kede" value="{{ row }}.{{ col }}"></button>
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+        <div class="pannel">
+            <form method="post" action="/">
+                <button type="submit" name="action" value="pirkti" >Pirkti</button>
+                <button type="submit" name="action" value="grazinti" >Grazinimas</button>
+                <button type="submit" name="action" value="reset" >Anuliuoti</button>
+            </form>
+        </div>
+    </div>
+</body>
