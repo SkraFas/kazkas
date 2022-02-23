@@ -50,6 +50,12 @@ def index():
                             sale[i][j] = "vx"
                         elif sale[i][j] == "vsm":
                             sale[i][j] = "vx"
+                for i in range(len(sale)):
+                    for j in range(len(sale[i])):
+                        if sale[i][j] == "s":
+                            sale[i][j] = "e" 
+                        elif sale[i][j] == "vs":
+                            sale[i][j] = "v"
             case "reset":
                 sale = ResetFunkcija(sale)
             case "grazinti":
@@ -58,12 +64,6 @@ def index():
                         if sale[i][j] == "x":
                             sale[i][j] = "e"
                         elif sale[i][j] == "vx":
-                            sale[i][j] = "v"
-                for i in range(len(sale)):
-                    for j in range(len(sale[i])):
-                        if sale[i][j] == "s":
-                            sale[i][j] = "e" 
-                        elif sale[i][j] == "vs":
                             sale[i][j] = "v"
             case "suggest":
                 kiekis = int(request.values.get("count"))
